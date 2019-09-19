@@ -140,36 +140,40 @@ void Scene::createImage()
 
 						noLight = false;
 
-						float colorToAddRed = color.rgbRed + 255 * tabSphere[indMin].couleur.x * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.x * (300 / vecLightObj.norm());
-						float colorToAddGreen = color.rgbGreen + 255 * tabSphere[indMin].couleur.y * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.y * (300 / vecLightObj.norm());
-						float colorToAddBlue = color.rgbBlue + 255 * tabSphere[indMin].couleur.z * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.z * (300 / vecLightObj.norm());
+						float colorToAddRed = color.rgbRed + 255 * tabSphere[indMin].couleur.x * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.x * 1 * (300 / vecLightObj.norm());
+						float colorToAddGreen = color.rgbGreen + 255 * tabSphere[indMin].couleur.y * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.y * 1 * (300 / vecLightObj.norm());
+						float colorToAddBlue = color.rgbBlue + 255 * tabSphere[indMin].couleur.z * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.z * 1 *  (300 / vecLightObj.norm());
+
+						float modifierRed = 0;
+						float modifierGreen = 0;
+						float modifierBlue = 0;
 
 						if (colorToAddRed > 255)
 						{
-							color.rgbRed = 255;
+							modifierGreen += colorToAddRed - 255;
+							modifierBlue += colorToAddRed - 255;
 						}
-						else
-						{
-							color.rgbRed = colorToAddRed;
-						}
-						
+
 						if (colorToAddGreen > 255)
 						{
-							color.rgbGreen = 255;
-						}
-						else
-						{
-							color.rgbGreen = colorToAddGreen;
+							modifierRed += colorToAddGreen - 255;
+							modifierBlue += colorToAddGreen - 255;
 						}
 
 						if (colorToAddBlue > 255)
 						{
-							color.rgbBlue = 255;
+							modifierRed += colorToAddBlue - 255;
+							modifierGreen += colorToAddBlue - 255;
 						}
-						else
-						{
-							color.rgbBlue = colorToAddBlue;
-						}
+
+						colorToAddRed += modifierRed;
+						colorToAddGreen += modifierGreen;
+						colorToAddBlue += modifierBlue;
+
+
+						(colorToAddRed > 255) ? color.rgbRed = 255 : color.rgbRed = colorToAddRed;
+						(colorToAddGreen > 255) ? color.rgbGreen = 255 : color.rgbGreen = colorToAddGreen;
+						(colorToAddBlue > 255) ? color.rgbBlue = 255 : color.rgbBlue = colorToAddBlue;
 					}
 				}
 

@@ -7,9 +7,10 @@ Camera::Camera()
 	distanceToScreen = 0;
 }
 
-Camera::Camera(int wid, int hei, float dist)
+Camera::Camera(int wid, int hei, float dist, Vec3 pos)
 {
 	width = wid;
 	height = hei;
+	position = pos;
 	distanceToScreen = dist;
 } 
