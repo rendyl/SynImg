@@ -1,0 +1,39 @@
+﻿  Image.cpp
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(27): error C4146: opérateur moins unaire appliqué à un type non signé, le résultat sera non signé
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(38): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(70): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(77): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(79): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(91): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(98): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(100): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(151): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(182): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(189): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(191): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(202): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): note: voir la déclaration de 'fopen'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(209): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.h(211): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(1197): note: voir la déclaration de 'fscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.cpp(16): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(2263): note: voir la déclaration de 'sscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.cpp(17): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(2263): note: voir la déclaration de 'sscanf'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.cpp(8): warning C4101: 'nB' : variable locale non référencée
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.cpp(8): warning C4101: 'nG' : variable locale non référencée
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Image.cpp(8): warning C4101: 'nR' : variable locale non référencée
+  SynImg.cpp
+  Génération de code en cours...

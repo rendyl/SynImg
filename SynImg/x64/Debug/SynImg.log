@@ -1,0 +1,4 @@
+﻿  SynImg.cpp
+  class template optional is only available with C++17 or later.
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(14,60): warning C4305:  'argument' : troncation de 'double' à 'float'
+  SynImg.vcxproj -> C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\x64\Debug\SynImg.exe
