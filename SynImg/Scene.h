@@ -3,6 +3,7 @@
 #include "Rayon.h"
 #include "FreeImage.h"
 #include "Camera.h"
+#include "SurfaceLight.h"
 
 #include <algorithm>
 #include <vector>
@@ -25,6 +26,7 @@ class Scene
 		// Ajouter un element
 		void addSphere(Sphere s);
 		void addLight(Sphere l);
+		void addSurfaceLight(SurfaceLight s);
 
 		// Chope la direction de la cam depuis le pixel
 		Vec3 getDirPixCam(int i, int j);

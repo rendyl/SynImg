@@ -18,13 +18,13 @@ float Rayon::intersect(Sphere s)
 
 	if (delta < 0)
 	{
-		//std::cout << "delta < 0, 0 sol(s)" << std::endl; 
+		// std::cout << "delta < 0, 0 sol(s)" << std::endl; 
 		
 		return -1;
 	}
 	else
 	{
-		//std::cout << "delta > 0, 2 sol(s)" << std::endl;
+		// std::cout << "delta > 0, 2 sol(s)" << std::endl;
 		// float solT1 = -(position * direction - s.position * direction) - sqrt(delta) / 2;
 		// float solT2 = -(position * direction - s.position * direction) + sqrt(delta) / 2;
 
