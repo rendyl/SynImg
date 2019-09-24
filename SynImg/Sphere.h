@@ -8,7 +8,8 @@ class Sphere
 		float rayon;
 		Vec3 position;
 		Vec3 couleur;
+		float albedo;
 
-		Sphere(float rayon, Vec3 pos, Vec3 col);
+		Sphere(float rayon, Vec3 pos, Vec3 col, float alb);
 };
 

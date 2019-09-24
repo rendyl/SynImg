@@ -14,6 +14,8 @@ class Vec3
 		float norm();
 		float norm2();
 		
+		Vec3 mult(Vec3 v2);
+		Vec3 cross(Vec3 v2);
 		float operator*(Vec3 v2);
 		Vec3 operator+(Vec3 v2);
 		Vec3 operator-(Vec3 v2);

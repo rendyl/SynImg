@@ -7,5 +7,6 @@ class TP2
 	public :
 
 		void testIntersect();
+		void testCross();
 };
 

@@ -34,5 +34,10 @@ class Scene
 
 		// Creer une Image a partir de la scene
 		void createImage();
+		void appliqueCouleurLumiere(RGBQUAD* color, int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
+		void rayIntersectSphere(Rayon r1, std::vector<float>* results, std::vector<int>* indexs);
+		void getMinFromTab(int* indMin, float* resMin, std::vector<float> results, std::vector<int> indexs);
+		bool obstacleInTheWay(Rayon r2, Vec3 vecLightObj);
+		Vec3 generateRandomVectorHemisphere();
 };
 
