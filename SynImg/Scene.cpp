@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "Scene.h"
 #include <math.h>
+#include <omp.h>
 
 double Scene::generateRandomNumber(double min, double max)
 {
@@ -179,7 +180,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	float colorToAddGreen = 0;
 	float colorToAddBlue = 0;
 
-	if (indMin == -1 || compteur == 2)
+	if (indMin == -1 || compteur == 3)
 	{
 		return color;
 	}
@@ -286,10 +287,9 @@ void Scene::createImage()
 	}
 
 	// On parcourt les pixels de l'image
+	#pragma omp parallel for
 	for (int i =  0; i < camera.width; i++)
-	{
-		#pragma omp parallel for
-
+	{	
 		if (i % 100 == 0) std::cout << "i " << i << std::endl;
 		for (int j = 0; j < camera.height; j++)
 		{
