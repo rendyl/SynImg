@@ -1,47 +1,35 @@
 ﻿  Scene.cpp
   class template optional is only available with C++17 or later.
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(18,76): warning C4305:  'argument' : troncation de 'double' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(19,79): warning C4305:  'argument' : troncation de 'double' à 'float'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(17,76): warning C4305:  'argument' : troncation de 'double' à 'float'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(18,79): warning C4305:  'argument' : troncation de 'double' à 'float'
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(39,16): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(40,16): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
 C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(41,16): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(42,16): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(43,16): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(47,85): warning C4305:  'argument' : troncation de 'double' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(47,90): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(53,58): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(53,33): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(109,64): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(110,70): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(111,67): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(130,26): warning C4305:  '=' : troncation de '__int64' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(131,26): warning C4305:  '=' : troncation de '__int64' à 'int'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(131,12): warning C4309:  '=' : troncation de valeur de constante
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(166,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(167,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(168,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(192,54): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(192,51): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(196,21): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(196,18): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(246,37): warning C4305:  'initialisation' : troncation de '__int64' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(247,37): warning C4305:  'initialisation' : troncation de '__int64' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(255,28): warning C4244:  '=' : conversion de '_Ty' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(255,28): warning C4244:         with
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(255,28): warning C4244:         [
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(255,28): warning C4244:             _Ty=int
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(255,28): warning C4244:         ]
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(258,16): warning C4244:  '=' : conversion de 'float' en 'int', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(296,117): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(296,89): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(296,61): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(326,37): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(327,41): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(328,39): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(360,66): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(361,72): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(362,69): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(45,90): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(51,58): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(51,33): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(157,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(158,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(159,15): warning C4244:  'initialisation' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(235,113): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(235,85): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(235,57): warning C4244:  'argument' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(263,34): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(264,38): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(265,36): warning C4244:  '=' : conversion de 'double' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(269,62): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(270,68): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(271,65): warning C4244:  '=' : conversion de 'float' en 'BYTE', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(297,54): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(297,51): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(301,21): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+  SynImg.cpp
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(301,18): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\Scene.cpp(301,18): warning C4244: class template optional is only available with C++17 or later.
+C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(28,67): warning C4305:  'argument' : troncation de 'double' à 'float'
   Génération de code en cours
-  1 of 324 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  0 of 230 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   SynImg.vcxproj -> C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\x64\Release\SynImg.exe

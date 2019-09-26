@@ -7,11 +7,14 @@
 
 #include <algorithm>
 #include <vector>
+#include <random>
 
 class Scene
 {
 	public :
 		
+		double generateRandomNumber(double min, double max);
+
 		// Camera 
 		Camera camera;
 		int bpp = 24;
@@ -34,8 +37,11 @@ class Scene
 
 		// Creer une Image a partir de la scene
 		void createImage();
-		void appliqueCouleurLumiere(RGBQUAD* color, int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
-		void rayIntersectSphere(Rayon r1, std::vector<float>* results, std::vector<int>* indexs);
+		void createImage2();
+		RGBQUAD chercheCouleur(Rayon r1, int compteur);
+		Vec3 appliqueCouleurLumiere(int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
+		void rayIntersectSphere(Rayon r1, float* result, int* index);
+		// void rayIntersectSphere(Rayon r1, std::vector<float>* results, std::vector<int>* indexs);
 		void getMinFromTab(int* indMin, float* resMin, std::vector<float> results, std::vector<int> indexs);
 		bool obstacleInTheWay(Rayon r2, Vec3 vecLightObj);
 		Vec3 generateRandomVectorHemisphere();

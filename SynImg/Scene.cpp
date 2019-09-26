@@ -1,12 +1,11 @@
 #define _USE_MATH_DEFINES
 #include "Scene.h"
 #include <math.h>
-#include <random>
 
-double generateRandomNumber(double min, double max)
+double Scene::generateRandomNumber(double min, double max)
 {
 	std::random_device rd;
-	std::default_random_engine generator(rd());
+	std::mt19937 generator(rd());
 	std::uniform_real_distribution<double> distrib(min, max);
 
 	return distrib(generator);
@@ -20,7 +19,7 @@ Scene::Scene(Camera cam)
 	tabSphere.push_back(Sphere(30000, Vec3(300, -30000, 0), Vec3(1, 1, 1), 0));	// Down
 	tabSphere.push_back(Sphere(30000, Vec3(300, 600+30000, 0), Vec3(1, 1, 1), 0)); // Up
 	tabSphere.push_back(Sphere(30000, Vec3(300, 300, -30500), Vec3(1, 1, 1), 0));  // Back
-	tabSphere.push_back(Sphere(30000, Vec3(300, 300, 30300), Vec3(1, 1, 1), 0));	// Front
+	tabSphere.push_back(Sphere(30000, Vec3(300, 300, 30300), Vec3(1, 1, 1), 1));	// Front
 }
 
 void Scene::addSphere(Sphere s)
@@ -35,7 +34,6 @@ void Scene::addLight(Sphere l)
 
 void Scene::addSurfaceLight(SurfaceLight s)
 {
-	#pragma omp parallel for
 	for (int i = 0; i < s.nbLights; i++)
 	{
 		float iRandX = generateRandomNumber(0 , s.dimension.x);
@@ -44,7 +42,7 @@ void Scene::addSurfaceLight(SurfaceLight s)
 
 		Vec3 vecRand(iRandX, iRandY, iRandZ);
 
-		tabLight.push_back(Sphere(10, s.position + vecRand - s.dimension / 2, (s.color*1.6) / s.nbLights, 0));
+		tabLight.push_back(Sphere(10, s.position + vecRand - s.dimension / 2, (s.color*100) / s.nbLights, 0));
 	}
 }
 
@@ -60,20 +58,24 @@ Vec3 Scene::getDir2Pos(Vec3 posFrom, Vec3 posTo)
 	return dir;
 }
 
-void Scene::appliqueCouleurLumiere(RGBQUAD * color, int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k)
+Vec3 Scene::appliqueCouleurLumiere(int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k)
 {
 	Vec3 normObjDir = getDir2Pos(tabSphere[indMin].position, posTouche);
 	normObjDir = normObjDir / normObjDir.norm();
 
-	float colorToAddRed = color->rgbRed + 255 * tabSphere[indMin].couleur.x * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.x * 1 * (250 / vecLightObj.norm());
-	float colorToAddGreen = color->rgbGreen + 255 * tabSphere[indMin].couleur.y * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.y * 1 * (250 / vecLightObj.norm());
-	float colorToAddBlue = color->rgbBlue + 255 * tabSphere[indMin].couleur.z * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.z * 1 * (250 / vecLightObj.norm());
+	// float colorToAddRed = color->rgbRed + 255 * tabSphere[indMin].couleur.x * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.x * 1 * (250 / vecLightObj.norm());
+	// float colorToAddGreen = color->rgbGreen + 255 * tabSphere[indMin].couleur.y * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.y * 1 * (250 / vecLightObj.norm());
+	// float colorToAddBlue = color->rgbBlue + 255 * tabSphere[indMin].couleur.z * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.z * 1 * (250 / vecLightObj.norm());
+
+	float colorToAddRed = 255 * tabSphere[indMin].couleur.x * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.x * 1 * (250 / vecLightObj.norm());
+	float colorToAddGreen = 255 * tabSphere[indMin].couleur.y * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.y * 1 * (250 / vecLightObj.norm());
+	float colorToAddBlue = 255 * tabSphere[indMin].couleur.z * abs(normObjDir * vecLightObjDir) * tabLight[k].couleur.z * 1 * (250 / vecLightObj.norm());
 
 	if ((normObjDir * vecLightObjDir) < 0)
 	{
-		colorToAddRed = color->rgbRed;
-		colorToAddBlue = color->rgbGreen;
-		colorToAddGreen = color->rgbBlue;
+		colorToAddRed = 0;
+		colorToAddBlue = 0;
+		colorToAddGreen = 0;
 	}
 
 	float modifierRed = 0;
@@ -102,16 +104,18 @@ void Scene::appliqueCouleurLumiere(RGBQUAD * color, int indMin, Vec3 posTouche, 
 	colorToAddGreen += modifierGreen;
 	colorToAddBlue += modifierBlue;
 
+	return Vec3(colorToAddRed, colorToAddGreen, colorToAddBlue);
+
 	// colorToAddRed = ((colorToAddRed / 255) / pow(2, 2)) * 255;
 	// colorToAddGreen = ((colorToAddGreen / 255)/ pow(2, 2)) * 255;
 	// colorToAddBlue = ((colorToAddBlue / 255) / pow(2, 2)) * 255;
 
-	(colorToAddRed > 255) ? color->rgbRed = 255 : color->rgbRed = colorToAddRed;
-	(colorToAddGreen > 255) ? color->rgbGreen = 255 : color->rgbGreen = colorToAddGreen;
-	(colorToAddBlue > 255) ? color->rgbBlue = 255 : color->rgbBlue = colorToAddBlue;
+	// (colorToAddRed > 255) ? color->rgbRed = 255 : color->rgbRed = colorToAddRed;
+	// (colorToAddGreen > 255) ? color->rgbGreen = 255 : color->rgbGreen = colorToAddGreen;
+	// (colorToAddBlue > 255) ? color->rgbBlue = 255 : color->rgbBlue = colorToAddBlue;
 }
 
-void Scene::rayIntersectSphere(Rayon r1, std::vector<float> * results, std::vector<int> * indexs)
+void Scene::rayIntersectSphere(Rayon r1, float * result, int * index)
 {
 	for (int k = 0; k < tabSphere.size(); k++)
 	{
@@ -119,24 +123,11 @@ void Scene::rayIntersectSphere(Rayon r1, std::vector<float> * results, std::vect
 
 		if (res != -1)
 		{
-			results->push_back(res);
-			indexs->push_back(k);
-		}
-	}
-}
-
-void Scene::getMinFromTab(int * indMin, float * resMin, std::vector<float> results, std::vector<int> indexs)
-{
-	*resMin = 99999999999999;
-	*indMin = 99999999999999;
-
-	// On recupere la premiere intersection
-	for (int i = 0; i < results.size(); i++)
-	{
-		if (results[i] < *resMin)
-		{
-			*resMin = results[i];
-			*indMin = indexs[i];
+			if (*index == -1 || res < *result)
+			{
+				*result = res;
+				*index = k;
+			}	
 		}
 	}
 }
@@ -170,6 +161,118 @@ Vec3 Scene::generateRandomVectorHemisphere()
 	return Vec3(iRandX, iRandY, iRandZ);
 }
 
+RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
+{
+	RGBQUAD color;
+	color.rgbRed = 0;
+	color.rgbGreen = 0;
+	color.rgbBlue = 0;
+
+	float resMin = -1;
+	int indMin = -1;
+
+	// On regarde si le rayon intersecte un ou plusieurs objets
+	rayIntersectSphere(r1, &resMin, &indMin);
+
+	// Si le rayon n'a rien trouvé on met du noir
+	float colorToAddRed = 0;
+	float colorToAddGreen = 0;
+	float colorToAddBlue = 0;
+
+	if (indMin == -1 || compteur == 2)
+	{
+		return color;
+	}
+	
+	// On prend la position de l'intersection
+	Vec3 posTouche = r1.position + r1.direction * resMin;
+
+	// Si on a touché un miroir on va refaire un rayon et refaire les calculs précédents
+	
+	if (tabSphere[indMin].albedo == 1)
+	{
+		Vec3 vecNormMiroir = getDir2Pos(tabSphere[indMin].position, posTouche);
+		vecNormMiroir = vecNormMiroir / vecNormMiroir.norm();
+
+		Vec3 dir = r1.direction - vecNormMiroir * 2 * (r1.direction * vecNormMiroir);
+		dir = dir / dir.norm();
+
+		Rayon r4(posTouche + dir * 1.5, dir);
+
+		color = chercheCouleur(r4, compteur);
+
+		return color;
+	}
+	
+
+	// Sinon on va regarder si l'intersection est eclairée
+	for (int k = 0; k < tabLight.size(); k++)
+	{
+		Vec3 vecLightObj = getDir2Pos(posTouche, tabLight[k].position);
+		Vec3 vecLightObjDir = vecLightObj / vecLightObj.norm();
+
+		// On trace un rayon entre la lumière et l'intersection
+		Rayon r2(posTouche + vecLightObjDir * 1.5, vecLightObjDir);
+
+		// On regarde s'il y a un obstacle entre la lumiere et l'intersection
+		bool obsInTheWay = obstacleInTheWay(r2, vecLightObj);
+
+		// S'il n'y a pas d'obstacle on applique la couleur de la lumiere k
+		if (!obsInTheWay)
+		{
+			// Il y a au moins une lumiere qui eclaire l'intersection
+			Vec3 colorToAddVec = appliqueCouleurLumiere(indMin, posTouche, vecLightObj, vecLightObjDir, k);
+			colorToAddRed = colorToAddVec.x;
+			colorToAddGreen = colorToAddVec.y;
+			colorToAddBlue = colorToAddVec.z;
+		}
+	}
+
+	// On ajoute les lumières indirectes
+
+	Vec3 normObjDir = getDir2Pos(tabSphere[indMin].position, posTouche);
+	normObjDir = normObjDir / normObjDir.norm();
+	Vec3 vecRandom = normObjDir + Vec3(generateRandomNumber(0, 1), generateRandomNumber(0, 1), generateRandomNumber(0, 1));
+	Vec3 base1 = normObjDir.cross(vecRandom);
+	base1 = base1 / base1.norm();
+	Vec3 base2 = normObjDir.cross(base1);
+	base2 = base2 / base2.norm();
+	
+	for (int l = 0; l < 5; l++)
+	{
+		// On genere un vecteur
+		Vec3 vecDir = generateRandomVectorHemisphere();
+		vecDir = normObjDir * vecDir.z + base2 * vecDir.x + base1 * vecDir.y;
+		// On le normalise
+		vecDir = vecDir / vecDir.norm();
+
+		Rayon r3(posTouche + vecDir * 1.5, vecDir);
+
+		RGBQUAD newColor = chercheCouleur(r3, compteur +1);
+
+		float resMin3 = -1;
+		int indMin3 = -1;
+		rayIntersectSphere(r3, &resMin3, &indMin3);
+
+		if (indMin3 != -1)
+		{
+			Vec3 posTouche3 = r3.position + r3.direction * resMin3;
+			Vec3 normTouche3 = getDir2Pos(tabSphere[indMin3].position, posTouche3);
+			normTouche3 = normTouche3 / normTouche3.norm();
+
+			colorToAddRed = colorToAddRed + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.x * (newColor.rgbRed);
+			colorToAddGreen = colorToAddGreen + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.y * (newColor.rgbGreen);
+			colorToAddBlue = colorToAddBlue + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.z * (newColor.rgbBlue);
+		}
+	}
+
+	(colorToAddRed > 255) ? color.rgbRed = 255 : color.rgbRed = colorToAddRed;
+	(colorToAddGreen > 255) ? color.rgbGreen = 255 : color.rgbGreen = colorToAddGreen;
+	(colorToAddBlue > 255) ? color.rgbBlue = 255 : color.rgbBlue = colorToAddBlue;
+
+	return color;
+}
+
 void Scene::createImage()
 {
 	FreeImage_Initialise();
@@ -186,184 +289,20 @@ void Scene::createImage()
 	for (int i =  0; i < camera.width; i++)
 	{
 		#pragma omp parallel for
+
+		if (i % 100 == 0) std::cout << "i " << i << std::endl;
 		for (int j = 0; j < camera.height; j++)
 		{
 			// On prend la direction de la camera depuis sa position vers le premier pixel
 			Vec3 vecCam = getDir2Pos(camera.position, Vec3(i, j, 0));
 			vecCam = vecCam / vecCam.norm();
-			
+
 			// On trace un rayon a partir de la
 			Rayon r1(Vec3(i, j, 0), vecCam);
-			std::vector<float> results;
-			std::vector<int> indexs;
 
-			// On regarde si le rayon intersecte un ou plusieurs objets
-			rayIntersectSphere(r1, &results, &indexs);
+			color = chercheCouleur(r1, 0);
 
-			// Si le rayon n'a rien trouvé on met du noir
-			color.rgbRed = 0;
-			color.rgbGreen = 0;
-			color.rgbBlue = 0;
-
-			// Sinon 
-			if(!indexs.empty())
-			{
-				float colorToAddRed, colorToAddBlue, colorToAddGreen;
-				float resMin;
-				int indMin;
-
-				getMinFromTab(&indMin, &resMin, results, indexs);
-
-				// On prend la position de l'intersection
-				Vec3 posTouche = r1.position + r1.direction * resMin;
-				
-				// Si on a touché un miroir on va refaire un rayon et refaire les calculs précédents
-				// TENTATIVE MIROIR
-
-				if (tabSphere[indMin].albedo == 1)
-				{
-					Vec3 vecNormMiroir = getDir2Pos(tabSphere[indMin].position, posTouche);
-					vecNormMiroir = vecNormMiroir / vecNormMiroir.norm();
-
-					Vec3 dir = r1.direction  - vecNormMiroir*2*(r1.direction *vecNormMiroir);
-					dir = dir / dir.norm();
-
-					Rayon r4(posTouche + dir*1.5, dir);
-					std::vector <float> results2;
-					std::vector <int> indexs2;
-
-					rayIntersectSphere(r4, &results2, &indexs2);
-					if (results2.empty())
-					{
-						std::cout << "ahahhah" << std::endl;
-						color.rgbRed = 255;
-						color.rgbGreen = 0;
-						color.rgbBlue = 255;
-						break;
-					}
-					else
-					{
-						float resMin2 = 99999999999999;
-						float indMin2 = 99999999999999;
-
-						// On recupere la premiere intersection
-						for (int i = 0; i < results2.size(); i++)
-						{
-							if (results2[i] < resMin2)
-							{
-								resMin2 = results2[i];
-								indMin2 = indexs2[i];
-							}
-						}
-						indMin = indMin2;
-						posTouche = r4.position + r4.direction * resMin2;
-					}
-				}
-
-				// On va regarder si elle est eclairée
-				bool noLight = true;
-				for (int k = 0; k < tabLight.size(); k++)
-				{
-					Vec3 vecLightObj = getDir2Pos(posTouche, tabLight[k].position);
-					Vec3 vecLightObjDir = vecLightObj / vecLightObj.norm();
-
-					// On trace un rayon entre la lumière et l'intersection
-					Rayon r2(posTouche + vecLightObjDir*1.5, vecLightObjDir);
-
-					// On regarde s'il y a un obstacle entre la lumiere et l'intersection
-					bool obsInTheWay = obstacleInTheWay(r2, vecLightObj);
-
-					// S'il n'y a pas d'obstacle on applique la couleur de la lumiere k
-					if (!obsInTheWay)
-					{
-						// Il y a au moins une lumiere qui eclaire l'intersection
-						noLight = false;				
-						appliqueCouleurLumiere(&color, indMin, posTouche, vecLightObj, vecLightObjDir, k);
-					}
-				}
-
-				// S'il n'y a pas de lumiere qui eclaire l'intersection
-				if (noLight)
-				{
-					color.rgbRed = 0;
-					color.rgbGreen = 0;
-					color.rgbBlue = 0;
-					
-					// LUMIERE INDIRECTE
-					
-					Vec3 normObjDir = getDir2Pos(tabSphere[indMin].position, posTouche);
-					normObjDir = normObjDir / normObjDir.norm();
-					Vec3 vecRandom = normObjDir + Vec3(generateRandomNumber(0, 1), generateRandomNumber(0, 1), generateRandomNumber(0, 1));
-					Vec3 base1 = normObjDir.cross(vecRandom);
-					Vec3 base2 = normObjDir.cross(base1);
-
-					for (int l = 0; l < 10; l++)
-					{
-						// On genere un vecteur
-						Vec3 vecDir = generateRandomVectorHemisphere();
-						vecDir = normObjDir * vecDir.z + base2 * vecDir.x + base1 * vecDir.y;
-
-						// On le normalise
-						vecDir = vecDir / vecDir.norm();
-
-						Rayon r3(posTouche + vecDir * 1.5, vecDir);
-						
-						std::vector<float> results3;
-						std::vector<int> indexs3;
-						rayIntersectSphere(r3, &results3, &indexs3);
-
-						if (!indexs3.empty())
-						{
-							int indMin3;
-							float resMin3;
-							getMinFromTab(&indMin3, &resMin3, results3, indexs3);
-
-							Vec3 vecTouche = r3.position + r3.direction * resMin3;
-							Vec3 vecToucheDir = vecTouche / vecTouche.norm();
-							Vec3 normObjDirTouche = getDir2Pos(tabSphere[indMin3].position, vecTouche);
-							normObjDirTouche = normObjDirTouche / normObjDirTouche.norm();
-							// abs(vecToucheDir * normObjDirTouche / M_PI)
-							colorToAddRed = color.rgbRed + 255 * tabSphere[indMin3].couleur.x * 0.2 * (250 / vecTouche.norm());
-							colorToAddGreen = color.rgbGreen + 255 * tabSphere[indMin3].couleur.y * 0.2 * (250 / vecTouche.norm());
-							colorToAddBlue = color.rgbBlue + 255 * tabSphere[indMin3].couleur.z * 0.2 * (250 / vecTouche.norm());
-
-							float modifierRed = 0;
-							float modifierGreen = 0;
-							float modifierBlue = 0;
-
-							if (colorToAddRed > 255)
-							{
-								modifierGreen += colorToAddRed - 255;
-								modifierBlue += colorToAddRed - 255;
-							}
-
-							if (colorToAddGreen > 255)
-							{
-								modifierRed += colorToAddGreen - 255;
-								modifierBlue += colorToAddGreen - 255;
-							}
-
-							if (colorToAddBlue > 255)
-							{
-								modifierRed += colorToAddBlue - 255;
-								modifierGreen += colorToAddBlue - 255;
-							}
-
-							colorToAddRed += modifierRed;
-							colorToAddGreen += modifierGreen;
-							colorToAddBlue += modifierBlue;
-
-							break;
-						}
-					}
-
-					(colorToAddRed > 255) ? color.rgbRed = 255 : color.rgbRed = colorToAddRed;
-					(colorToAddGreen > 255) ? color.rgbGreen = 255 : color.rgbGreen = colorToAddGreen;
-					(colorToAddBlue > 255) ? color.rgbBlue = 255 : color.rgbBlue = colorToAddBlue;
-				}
-
-				FreeImage_SetPixelColor(bitmap, i, camera.height-(j+1), &color);
-			}
+			FreeImage_SetPixelColor(bitmap, i, camera.height - (j + 1), &color);
 		}
 	}
 
@@ -374,3 +313,4 @@ void Scene::createImage()
 	
 	FreeImage_DeInitialise();
 }
+
