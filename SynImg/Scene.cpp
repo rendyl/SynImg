@@ -16,9 +16,9 @@ Scene::Scene(Camera cam)
 {
 	camera = cam;
 	tabSphere.push_back(Sphere(30000, Vec3(-30000, 300, 0), Vec3(0.7, 0.1, 0.1), 0));	// Left
-	tabSphere.push_back(Sphere(30000, Vec3(30000+600, 300, 0), Vec3(0.1, 0.7, 0.1), 0)); // Right
+	tabSphere.push_back(Sphere(30000, Vec3(30000 + 600, 300, 0), Vec3(0.1, 0.7, 0.1), 0)); // Right
 	tabSphere.push_back(Sphere(30000, Vec3(300, -30000, 0), Vec3(1, 1, 1), 0));	// Down
-	tabSphere.push_back(Sphere(30000, Vec3(300, 600+30000, 0), Vec3(1, 1, 1), 0)); // Up
+	tabSphere.push_back(Sphere(30000, Vec3(300, 600 + 30000, 0), Vec3(1, 1, 1), 0)); // Up
 	tabSphere.push_back(Sphere(30000, Vec3(300, 300, -30500), Vec3(1, 1, 1), 0));  // Back
 	tabSphere.push_back(Sphere(30000, Vec3(300, 300, 30300), Vec3(1, 1, 1), 1));	// Front
 }
@@ -37,20 +37,20 @@ void Scene::addSurfaceLight(SurfaceLight s)
 {
 	for (int i = 0; i < s.nbLights; i++)
 	{
-		float iRandX = generateRandomNumber(0 , s.dimension.x);
-		float iRandY = generateRandomNumber(0 , s.dimension.y);
-		float iRandZ = generateRandomNumber(0 , s.dimension.z);
+		float iRandX = generateRandomNumber(0, s.dimension.x);
+		float iRandY = generateRandomNumber(0, s.dimension.y);
+		float iRandZ = generateRandomNumber(0, s.dimension.z);
 
 		Vec3 vecRand(iRandX, iRandY, iRandZ);
 
-		tabLight.push_back(Sphere(10, s.position + vecRand - s.dimension / 2, (s.color*100) / s.nbLights, 0));
+		tabLight.push_back(Sphere(10, s.position + vecRand - s.dimension / 2, (s.color) / s.nbLights, 0));
 	}
 }
 
 Vec3 Scene::getDirPixCam(int i, int j)
 {
-	Vec3 v = Vec3((camera.width/2) - i, (camera.height / 2) - j, camera.distanceToScreen);
-	return (v/v.norm());
+	Vec3 v = Vec3((camera.width / 2) - i, (camera.height / 2) - j, camera.distanceToScreen);
+	return (v / v.norm());
 }
 
 Vec3 Scene::getDir2Pos(Vec3 posFrom, Vec3 posTo)
@@ -116,7 +116,7 @@ Vec3 Scene::appliqueCouleurLumiere(int indMin, Vec3 posTouche, Vec3 vecLightObj,
 	// (colorToAddBlue > 255) ? color->rgbBlue = 255 : color->rgbBlue = colorToAddBlue;
 }
 
-void Scene::rayIntersectSphere(Rayon r1, float * result, int * index)
+void Scene::rayIntersectSphere(Rayon r1, float* result, int* index)
 {
 	for (int k = 0; k < tabSphere.size(); k++)
 	{
@@ -128,7 +128,7 @@ void Scene::rayIntersectSphere(Rayon r1, float * result, int * index)
 			{
 				*result = res;
 				*index = k;
-			}	
+			}
 		}
 	}
 }
@@ -184,12 +184,12 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	{
 		return color;
 	}
-	
+
 	// On prend la position de l'intersection
 	Vec3 posTouche = r1.position + r1.direction * resMin;
 
 	// Si on a touché un miroir on va refaire un rayon et refaire les calculs précédents
-	
+
 	if (tabSphere[indMin].albedo == 1)
 	{
 		Vec3 vecNormMiroir = getDir2Pos(tabSphere[indMin].position, posTouche);
@@ -200,11 +200,11 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 
 		Rayon r4(posTouche + dir * 1.5, dir);
 
-		color = chercheCouleur(r4, compteur);
+		color = chercheCouleur(r4, compteur + 1);
 
 		return color;
 	}
-	
+
 
 	// Sinon on va regarder si l'intersection est eclairée
 	for (int k = 0; k < tabLight.size(); k++)
@@ -223,9 +223,9 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 		{
 			// Il y a au moins une lumiere qui eclaire l'intersection
 			Vec3 colorToAddVec = appliqueCouleurLumiere(indMin, posTouche, vecLightObj, vecLightObjDir, k);
-			colorToAddRed = colorToAddVec.x;
-			colorToAddGreen = colorToAddVec.y;
-			colorToAddBlue = colorToAddVec.z;
+			colorToAddRed += colorToAddVec.x;
+			colorToAddGreen += colorToAddVec.y;
+			colorToAddBlue += colorToAddVec.z;
 		}
 	}
 
@@ -238,7 +238,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	base1 = base1 / base1.norm();
 	Vec3 base2 = normObjDir.cross(base1);
 	base2 = base2 / base2.norm();
-	
+
 	for (int l = 0; l < 5; l++)
 	{
 		// On genere un vecteur
@@ -249,7 +249,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 
 		Rayon r3(posTouche + vecDir * 1.5, vecDir);
 
-		RGBQUAD newColor = chercheCouleur(r3, compteur +1);
+		RGBQUAD newColor = chercheCouleur(r3, compteur + 1);
 
 		float resMin3 = -1;
 		int indMin3 = -1;
@@ -287,9 +287,9 @@ void Scene::createImage()
 	}
 
 	// On parcourt les pixels de l'image
-	#pragma omp parallel for
-	for (int i =  0; i < camera.width; i++)
-	{	
+#pragma omp parallel for
+	for (int i = 0; i < camera.width; i++)
+	{
 		if (i % 100 == 0) std::cout << "i " << i << std::endl;
 		for (int j = 0; j < camera.height; j++)
 		{
@@ -310,7 +310,6 @@ void Scene::createImage()
 	{
 		std::cout << "Image enregistree !" << std::endl;
 	}
-	
+
 	FreeImage_DeInitialise();
 }
-
