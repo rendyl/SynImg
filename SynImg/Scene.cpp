@@ -15,12 +15,12 @@ double Scene::generateRandomNumber(double min, double max)
 Scene::Scene(Camera cam)
 {
 	camera = cam;
-	tabSphere.push_back(Sphere(30000, Vec3(-30000, 300, 0), Vec3(0.7, 0.1, 0.1), 0));	// Left
-	tabSphere.push_back(Sphere(30000, Vec3(30000 + 600, 300, 0), Vec3(0.1, 0.7, 0.1), 0)); // Right
-	tabSphere.push_back(Sphere(30000, Vec3(300, -30000, 0), Vec3(1, 1, 1), 0));	// Down
-	tabSphere.push_back(Sphere(30000, Vec3(300, 600 + 30000, 0), Vec3(1, 1, 1), 0)); // Up
-	tabSphere.push_back(Sphere(30000, Vec3(300, 300, -30500), Vec3(1, 1, 1), 0));  // Back
-	tabSphere.push_back(Sphere(30000, Vec3(300, 300, 30300), Vec3(1, 1, 1), 1));	// Front
+	tabSphere.push_back(Sphere(30000, Vec3(-30000, 300, 0), Vec3(0.45, 0.34, 0.34), 0.9));	// Left
+	tabSphere.push_back(Sphere(30000, Vec3(30000 + 600, 300, 0), Vec3(0.74, 0.71, 0.57), 0.9)); // Right
+	tabSphere.push_back(Sphere(30000, Vec3(300, -30000, 0), Vec3(1, 1, 1), 0.9));	// Down
+	tabSphere.push_back(Sphere(30000, Vec3(300, 600 + 30000, 0), Vec3(1, 1, 1), 0.9)); // Up
+	tabSphere.push_back(Sphere(30000, Vec3(300, 300, -30500), Vec3(1, 1, 1), 0.9));  // Back
+	tabSphere.push_back(Sphere(30000, Vec3(300, 300, 30300), Vec3(1, 1, 1), 0.9));	// Front
 }
 
 void Scene::addSphere(Sphere s)
@@ -139,7 +139,7 @@ bool Scene::obstacleInTheWay(Rayon r2, Vec3 vecLightObj)
 	{
 		float res2 = r2.intersect(tabSphere[i]);
 
-		if (res2 != -1)
+		if (res2 != -1 && tabSphere[i].albedo <= 1)
 		{
 			if (res2 < vecLightObj.norm())
 			{
@@ -205,6 +205,91 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 		return color;
 	}
 
+	// Indice de refractions : N = 1 AIR / N = 1.5 VERRE / n1.sin(i1) = n2.sin(i2)
+
+	if (tabSphere[indMin].albedo > 1)
+	{
+		Vec3 vecNormVerre = getDir2Pos(tabSphere[indMin].position, posTouche);
+		vecNormVerre = vecNormVerre / vecNormVerre.norm();
+
+		Vec3 dirReflechie = r1.direction - vecNormVerre * 2 * (r1.direction * vecNormVerre);
+		dirReflechie = dirReflechie / dirReflechie.norm();
+
+		int prodScalNormIncident = (r1.direction * vecNormVerre) / abs(r1.direction * vecNormVerre);
+
+		Vec3 dirRefractee;
+		float eta = 1;
+		float N_dot_I = (r1.direction * vecNormVerre);
+
+		float n1 = 1;
+		float n2 = eta;
+
+		bool reflectionTotale = false;
+
+		if (prodScalNormIncident >= 0) float tmp = n1, n1 = n2, n2 = tmp, eta = 1 / tabSphere[indMin].albedo;
+
+		// float r0 = pow((n1 - n2) / (n1 + n2), 2);
+		// float rTheta = r0 + (1 - r0) * pow((1 - abs(N_dot_I)), 5);
+
+		vecNormVerre = vecNormVerre * (-prodScalNormIncident);
+
+		float k = 1.f - eta * eta * (1.f - N_dot_I * N_dot_I);
+		if (k < 0.f) reflectionTotale = true;
+		else dirRefractee = r1.direction * eta - vecNormVerre * (eta * (-prodScalNormIncident) * N_dot_I + sqrtf(k));
+
+		dirRefractee = dirRefractee / dirRefractee.norm();
+
+		Rayon r4(posTouche + dirReflechie * 1.5, dirReflechie);
+		RGBQUAD color1 = chercheCouleur(r4, compteur + 1);
+
+		Rayon r5(posTouche + dirRefractee * 1.5, dirRefractee);
+		RGBQUAD color2 = chercheCouleur(r5, compteur + 1);
+		
+		float pourcentReflect = 0;
+		float pourcentRefract = 1;
+
+		if (reflectionTotale)
+		{
+			pourcentReflect = 0.9;
+			pourcentRefract = 0.1;
+		}
+		else
+		{
+			pourcentReflect = 0.5;
+			pourcentRefract = 0.5;
+		}
+
+		float colorToAddRed1 = (int)color1.rgbRed;
+		float colorToAddGreen1 = (int)color1.rgbGreen;
+		float colorToAddBlue1 = (int)color1.rgbBlue;
+
+		float colorToAddRed2  = colorToAddRed1 * pourcentReflect;
+		float colorToAddGreen2 = colorToAddGreen1 * pourcentReflect;
+		float colorToAddBlue2 = colorToAddBlue1 * pourcentReflect;
+
+		float colorToAddRed3 = (int)color2.rgbRed;
+		float colorToAddGreen3 = (int)color2.rgbGreen;
+		float colorToAddBlue3 = (int)color2.rgbBlue;
+
+		float colorToAddRed4 = colorToAddRed3 * pourcentRefract;
+		float colorToAddGreen4 = colorToAddGreen3 * pourcentRefract;
+		float colorToAddBlue4 = colorToAddBlue3 * pourcentRefract;
+
+		colorToAddRed = tabSphere[indMin].couleur.x*(colorToAddRed2 + colorToAddRed4);
+		colorToAddGreen = tabSphere[indMin].couleur.y*(colorToAddGreen2 + colorToAddGreen4);
+		colorToAddBlue = tabSphere[indMin].couleur.z*(colorToAddBlue2 + colorToAddBlue4);
+
+		// std::cout << colorToAddRed << std::endl;
+		// std::cout << colorToAddGreen << std::endl;
+		// std::cout << colorToAddBlue << std::endl;
+
+		color.rgbRed = colorToAddRed;
+		color.rgbGreen = colorToAddGreen;
+		color.rgbBlue = colorToAddBlue;
+		
+		return color;
+	}
+
 
 	// Sinon on va regarder si l'intersection est eclairée
 	for (int k = 0; k < tabLight.size(); k++)
@@ -230,7 +315,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	}
 
 	// On ajoute les lumières indirectes
-
+	/*
 	Vec3 normObjDir = getDir2Pos(tabSphere[indMin].position, posTouche);
 	normObjDir = normObjDir / normObjDir.norm();
 	Vec3 vecRandom = normObjDir + Vec3(generateRandomNumber(0, 1), generateRandomNumber(0, 1), generateRandomNumber(0, 1));
@@ -261,11 +346,12 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 			Vec3 normTouche3 = getDir2Pos(tabSphere[indMin3].position, posTouche3);
 			normTouche3 = normTouche3 / normTouche3.norm();
 
-			colorToAddRed = colorToAddRed + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.x * (newColor.rgbRed);
-			colorToAddGreen = colorToAddGreen + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.y * (newColor.rgbGreen);
-			colorToAddBlue = colorToAddBlue + 0.2 * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.z * (newColor.rgbBlue);
+			colorToAddRed = colorToAddRed + (tabSphere[indMin].albedo/ (2*M_PI)) * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.x * (newColor.rgbRed);
+			colorToAddGreen = colorToAddGreen + (tabSphere[indMin].albedo / (2 * M_PI)) * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.y * (newColor.rgbGreen);
+			colorToAddBlue = colorToAddBlue + (tabSphere[indMin].albedo / (2 * M_PI)) * abs(r3.direction * normTouche3) * tabSphere[indMin].couleur.z * (newColor.rgbBlue);
 		}
 	}
+	*/
 
 	(colorToAddRed > 255) ? color.rgbRed = 255 : color.rgbRed = colorToAddRed;
 	(colorToAddGreen > 255) ? color.rgbGreen = 255 : color.rgbGreen = colorToAddGreen;
@@ -287,7 +373,7 @@ void Scene::createImage()
 	}
 
 	// On parcourt les pixels de l'image
-#pragma omp parallel for
+	#pragma omp parallel for
 	for (int i = 0; i < camera.width; i++)
 	{
 		if (i % 100 == 0) std::cout << "i " << i << std::endl;
