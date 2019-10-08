@@ -1,17 +1,8 @@
-﻿  SynImg.cpp
+﻿  Rayon.cpp
   class template optional is only available with C++17 or later.
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(42,74): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(42,61): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(42,108): warning C4305:  'argument' : troncation de 'double' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(43,67): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(43,54): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(43,101): warning C4305:  'argument' : troncation de 'double' à 'float'
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(44,64): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(44,51): warning C4244:  'argument' : conversion de 'int' en 'float', perte possible de données
-C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\SynImg\SynImg.cpp(47,99): warning C4305:  'argument' : troncation de 'double' à 'float'
   Génération de code en cours
-  3 of 246 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  3 of 352 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   SynImg.vcxproj -> C:\Users\rlatbi\Desktop\2019\Synthese d'Img\SynImg\x64\Release\SynImg.exe

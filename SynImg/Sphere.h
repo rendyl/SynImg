@@ -10,6 +10,7 @@ class Sphere
 		Vec3 couleur;
 		float albedo;
 
+		Sphere();
 		Sphere(float rayon, Vec3 pos, Vec3 col, float alb);
 };
 

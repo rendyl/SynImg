@@ -169,6 +169,7 @@
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SynImg.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP1.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP2.cpp" />
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TreeBox.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.cpp" />
   </ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SurfaceLight.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP1.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP2.h" />
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TreeBox.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.h" />
   </ItemGroup>

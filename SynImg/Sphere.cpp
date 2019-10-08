@@ -7,3 +7,8 @@ Sphere::Sphere(float ray, Vec3 pos, Vec3 col, float alb)
 	couleur = col;
 	albedo = alb;
 }
+
+Sphere::Sphere()
+{
+
+}

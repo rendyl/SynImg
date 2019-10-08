@@ -138,6 +138,23 @@ void Scene::rayIntersectSphere(Rayon r1, float* result, int* index)
 	}
 }
 
+/*
+void Scene::rayIntersectBox(Rayon r1, float* result, int* index)
+{
+	for (int k = 0; k < tabBox.size(); k++)
+	{
+		bool res = r1.intersect(tabBox[k]);
+
+		if (res)
+		{
+			std::cout << "hahaha" << std::endl;
+			*index = k;
+			return;
+		}
+	}
+}
+*/
+
 bool Scene::obstacleInTheWay(Rayon r2, Vec3 vecLightObj)
 {
 	for (int i = 0; i < tabSphere.size(); i++)
@@ -178,7 +195,9 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	int indMin = -1;
 
 	// On regarde si le rayon intersecte un ou plusieurs objets
-	rayIntersectSphere(r1, &resMin, &indMin);
+	//rayIntersectSphere(r1, &resMin, &indMin);
+	resMin = r1.intersectTB(*tBox, &indMin);
+	// rayIntersectBox(r1, &resMin, &indMin);
 
 	// Si le rayon n'a rien trouvé on met du noir
 	float colorToAddRed = 0;
@@ -187,13 +206,26 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 
 	if (indMin == -1 || compteur == 3)
 	{
+		// std::cout << "hey" << std::endl;
 		return color;
 	}
+	else
+	{
+		std::cout << "indMin " << indMin << std::endl;
+	}
+	// BOX
+	//else
+	//{
+	//	color.rgbRed = 255;
+	//	color.rgbGreen = 255;
+	//	color.rgbBlue = 255;
+	//	return color;
+	//}
 
 	// On prend la position de l'intersection
 	Vec3 posTouche = r1.position + r1.direction * resMin;
 
-	// Si on a touché un miroir on va refaire un rayon et refaire les calculs précédents
+	// Miroir : On va refaire un rayon et refaire les calculs précédents
 
 	if (tabSphere[indMin].albedo == 1)
 	{
@@ -210,7 +242,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 		return color;
 	}
 
-	// Indice de refractions : N = 1 AIR / N = 1.5 VERRE / n1.sin(i1) = n2.sin(i2)
+	// Vitres : Indice de refractions : N = 1 AIR / N = 1.5 VERRE / n1.sin(i1) = n2.sin(i2)
 
 	if (tabSphere[indMin].albedo > 1)
 	{
@@ -320,6 +352,7 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	}
 
 	// On ajoute les lumières indirectes
+	
 	/*
 	Vec3 normObjDir = getDir2Pos(tabSphere[indMin].position, posTouche);
 	normObjDir = normObjDir / normObjDir.norm();
