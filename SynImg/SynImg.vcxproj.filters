@@ -42,6 +42,15 @@
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SurfaceLight.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.h">
@@ -66,6 +75,18 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SurfaceLight.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Read.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

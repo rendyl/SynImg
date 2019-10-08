@@ -28,6 +28,11 @@ void Scene::addSphere(Sphere s)
 	tabSphere.push_back(s);
 }
 
+void Scene::addTriangle(Triangle t)
+{
+	tabTriangle.push_back(t);
+}
+
 void Scene::addLight(Sphere l)
 {
 	tabLight.push_back(l);

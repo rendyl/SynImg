@@ -159,7 +159,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Camera.cpp" />
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Rayon.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Scene.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Sphere.cpp" />
@@ -167,16 +169,21 @@
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SynImg.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP1.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP2.cpp" />
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Camera.h" />
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Rayon.h" />
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Read.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Scene.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Sphere.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SurfaceLight.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP1.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TP2.h" />
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
