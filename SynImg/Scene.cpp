@@ -121,9 +121,9 @@ Vec3 Scene::appliqueCouleurLumiere(int indMin, Vec3 posTouche, Vec3 vecLightObj,
 	// (colorToAddBlue > 255) ? color->rgbBlue = 255 : color->rgbBlue = colorToAddBlue;
 }
 
-void Scene::rayIntersectSphere(Rayon r1, float* result, int* index)
+void Scene::rayIntersectSphere(int lastIndice, Rayon r1, float* result, int* index)
 {
-	for (int k = 0; k < tabSphere.size(); k++)
+	for (int k = 0; k < lastIndice; k++)
 	{
 		float res = r1.intersect(tabSphere[k]);
 
@@ -195,32 +195,36 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	int indMin = -1;
 
 	// On regarde si le rayon intersecte un ou plusieurs objets
-	//rayIntersectSphere(r1, &resMin, &indMin);
-	resMin = r1.intersectTB(*tBox, &indMin);
-	// rayIntersectBox(r1, &resMin, &indMin);
+	// rayIntersectSphere(tabSphere.size(), r1, &resMin, &indMin);
+
+	// TBOX
+
+	returnResult result = r1.intersectTB(tBox);
+	resMin = result.intersect;
+	indMin = result.indexToSend;
+
+	// Debug : rayIntersectBox(r1, &resMin, &indMin);
 
 	// Si le rayon n'a rien trouvé on met du noir
 	float colorToAddRed = 0;
 	float colorToAddGreen = 0;
 	float colorToAddBlue = 0;
 
-	if (indMin == -1 || compteur == 3)
-	{
+	// if (indMin == -1) rayIntersectSphere(6, r1, &resMin, &indMin);
 		// std::cout << "hey" << std::endl;
-		return color;
-	}
+		//color.rgbRed = 255;
+		//color.rgbGreen = 255;
+		//color.rgbBlue = 255;
+	if (indMin == -1 || compteur == 3) return color;
 	else
 	{
-		std::cout << "indMin " << indMin << std::endl;
+
+		//std::cout << "a " << indMin << std::endl;
+		//color.rgbRed = 255;
+		//color.rgbGreen = 255;
+		//color.rgbBlue = 255;
+		//return color;
 	}
-	// BOX
-	//else
-	//{
-	//	color.rgbRed = 255;
-	//	color.rgbGreen = 255;
-	//	color.rgbBlue = 255;
-	//	return color;
-	//}
 
 	// On prend la position de l'intersection
 	Vec3 posTouche = r1.position + r1.direction * resMin;
@@ -338,7 +342,47 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 		Rayon r2(posTouche + vecLightObjDir * 1.5, vecLightObjDir);
 
 		// On regarde s'il y a un obstacle entre la lumiere et l'intersection
-		bool obsInTheWay = obstacleInTheWay(r2, vecLightObj);
+		
+		// TBOX 
+		
+		float resMin2 = -1;
+		int indMin2 = -1;
+		
+		returnResult result2 = r2.intersectTB(tBox);
+		resMin2 = result.intersect;
+		indMin2 = result.indexToSend;
+
+		bool tbObstacle = false;
+		if (indMin2 != -1 && tabSphere[indMin2].albedo <= 1)
+		{
+			if (resMin2 < vecLightObj.norm())
+			{
+				//std::cout << "hello there" << std::endl;
+				tbObstacle = true;
+			}
+		}
+
+		/*
+		float resMin3 = -1;
+		int indMin3 = -1;
+		bool tbWalls = false;
+
+		rayIntersectSphere(6, r2, &resMin3, &indMin3);
+		if (indMin3 != -1 && tabSphere[indMin3].albedo <= 1)
+		{
+			if (resMin3 < vecLightObj.norm())
+			{
+				tbWalls = true;
+			}
+		}
+		*/
+
+		bool obsInTheWay = tbObstacle;
+
+		// bool obsInTheWay = obstacleInTheWay(r2, vecLightObj);
+
+		//if ((tbObstacle || tbWalls) != obsInTheWay2) std::cout << "NOOOOOON" << std::endl;
+		// else std::cout << "OUIIIIII" << std::endl;
 
 		// S'il n'y a pas d'obstacle on applique la couleur de la lumiere k
 		if (!obsInTheWay)

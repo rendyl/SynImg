@@ -7,6 +7,18 @@
 #include <iostream>
 #include <math.h>
 
+struct returnResult
+{
+	returnResult(float inter, int index)
+	{
+		intersect = inter;
+		indexToSend = index;
+	};
+
+	float intersect;
+	int indexToSend;
+};
+
 class Rayon
 {
 	public : 
@@ -19,6 +31,6 @@ class Rayon
 		float intersect(Sphere s);
 		float intersect(Triangle t);
 		float intersect(Box b);
-		float intersectTB(TreeBox tb, int * indix); 
+		returnResult intersectTB(TreeBox * tb); 
 };
 

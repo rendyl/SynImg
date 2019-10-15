@@ -126,46 +126,52 @@ float Rayon::intersect(Box b)
 	return 1;
 }
 
-
-float Rayon::intersectTB(TreeBox tb, int * indix)
+returnResult Rayon::intersectTB(TreeBox * tb)
 {
-	if (tb.isLeaf)
+	if (tb->isLeaf)
 	{
-		*indix = tb.indixSphere;
-		return intersect(tb.s);
+		return returnResult(intersect(tb->s), tb->indixSphere);
 	}
 	else
 	{
-		if (intersect(tb.boxster) != -1)
+		if (intersect(tb->boxster) != -1)
 		{
-			float f1 = intersectTB(*tb.left, indix);
-			float f2 = intersectTB(*tb.right, indix);
+			returnResult r1 = intersectTB(tb->left);
+			//std::cout << "indexL " << r1.indexToSend << std::endl;
+			//std::cout << "intersectL " << r1.intersect << std::endl;
+			returnResult r2 = intersectTB(tb->right);
+			//std::cout << "indexR " << r2.indexToSend << std::endl;
+			//std::cout << "intersectR " << r2.intersect << std::endl;
 
-			if (f1 == -1 && f2 == -1)
+			if (r1.intersect == -1 && r2.intersect == -1)
 			{	
-				*indix = -1;
-				return -1;
+				//std::cout << "returned NONE" << std::endl;
+				return returnResult(-1, -1);
 			}
-			else if (f1 == -1)
+			else if (r1.intersect == -1)
 			{
-				*indix = tb.left->indixSphere;
-				return f2;
+				//std::cout << "returned RIGHT" << std::endl;
+				return r2;
 			}
-			else if (f2 == -1)
+			else if (r2.intersect == -1)
 			{
-				*indix = tb.right->indixSphere;
-				return f1;
+				//std::cout << "returned LEFT" << std::endl;
+				return r1;
 			}
 			else
-			{	
-				(f1 < f2) ? *indix = tb.left->indixSphere : *indix = tb.right->indixSphere;
-				return std::min(f1, f2);
+			{
+				if (r2.intersect < r1.intersect)
+				{
+					//std::cout << "returned RIGHT" << std::endl; 
+					return r2;
+				}
+				//std::cout << "returned LEFT" << std::endl;
+				return r1;
 			}
 		}
 		else
 		{
-			*indix = -1;
-			return -1;
+			return returnResult(-1, -1);
 		}
 	}
 }
