@@ -194,7 +194,11 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	float resMin = -1;
 	int indMin = -1;
 
+	float resMin45 = -1;
+	int indMin45 = -1;
 	// On regarde si le rayon intersecte un ou plusieurs objets
+
+	// SANS TBOX
 	// rayIntersectSphere(tabSphere.size(), r1, &resMin, &indMin);
 
 	// TBOX
@@ -210,21 +214,8 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 	float colorToAddGreen = 0;
 	float colorToAddBlue = 0;
 
-	// if (indMin == -1) rayIntersectSphere(6, r1, &resMin, &indMin);
-		// std::cout << "hey" << std::endl;
-		//color.rgbRed = 255;
-		//color.rgbGreen = 255;
-		//color.rgbBlue = 255;
+	if (indMin == -1) rayIntersectSphere(6, r1, &resMin, &indMin);
 	if (indMin == -1 || compteur == 3) return color;
-	else
-	{
-
-		//std::cout << "a " << indMin << std::endl;
-		//color.rgbRed = 255;
-		//color.rgbGreen = 255;
-		//color.rgbBlue = 255;
-		//return color;
-	}
 
 	// On prend la position de l'intersection
 	Vec3 posTouche = r1.position + r1.direction * resMin;
@@ -343,16 +334,20 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 
 		// On regarde s'il y a un obstacle entre la lumiere et l'intersection
 		
-		// TBOX 
+		// AVEC TBOX 
 		
 		float resMin2 = -1;
 		int indMin2 = -1;
+		float resMin3 = -1;
+		int indMin3 = -1;
+		bool tbObstacle = false;
+		bool tbWalls = false;
 		
 		returnResult result2 = r2.intersectTB(tBox);
-		resMin2 = result.intersect;
-		indMin2 = result.indexToSend;
+		resMin2 = result2.intersect;
+		indMin2 = result2.indexToSend;
 
-		bool tbObstacle = false;
+		
 		if (indMin2 != -1 && tabSphere[indMin2].albedo <= 1)
 		{
 			if (resMin2 < vecLightObj.norm())
@@ -362,11 +357,6 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 			}
 		}
 
-		/*
-		float resMin3 = -1;
-		int indMin3 = -1;
-		bool tbWalls = false;
-
 		rayIntersectSphere(6, r2, &resMin3, &indMin3);
 		if (indMin3 != -1 && tabSphere[indMin3].albedo <= 1)
 		{
@@ -375,13 +365,13 @@ RGBQUAD Scene::chercheCouleur(Rayon r1, int compteur)
 				tbWalls = true;
 			}
 		}
-		*/
 
-		bool obsInTheWay = tbObstacle;
+		bool obsInTheWay = (tbObstacle || tbWalls);
 
+		// SANS TBOX
 		// bool obsInTheWay = obstacleInTheWay(r2, vecLightObj);
 
-		//if ((tbObstacle || tbWalls) != obsInTheWay2) std::cout << "NOOOOOON" << std::endl;
+		// if ((tbObstacle || tbWalls) != obsInTheWay2) std::cout << "NOOOOOON" << std::endl;
 		// else std::cout << "OUIIIIII" << std::endl;
 
 		// S'il n'y a pas d'obstacle on applique la couleur de la lumiere k
