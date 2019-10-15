@@ -1,4 +1,5 @@
 #include "Vec3.h"
+#include <iostream>
 
 Vec3::Vec3()
 {
@@ -84,4 +85,9 @@ Vec3 Vec3::operator*(float a)
 Vec3 Vec3::operator/(float a)
 {
 	return Vec3(x / a, y / a, z / a);
+}
+
+void Vec3::display()
+{
+	std::cout << "X " << x << " Y " << y << " Z " << z << std::endl;
 }

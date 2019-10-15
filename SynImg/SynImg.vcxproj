@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Camera.cpp" />
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Mesh.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Rayon.cpp" />
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Scene.cpp" />
@@ -176,9 +177,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Camera.h" />
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Mesh.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Object.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Rayon.h" />
-    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Read.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Scene.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Sphere.h" />
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\SurfaceLight.h" />

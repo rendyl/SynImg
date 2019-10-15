@@ -9,12 +9,14 @@
 
 struct returnResult
 {
-	returnResult(float inter, int index)
+	returnResult(std::string typ, float inter, int index)
 	{
+		type = typ;
 		intersect = inter;
 		indexToSend = index;
 	};
 
+	std::string type;
 	float intersect;
 	int indexToSend;
 };
@@ -33,4 +35,3 @@ class Rayon
 		float intersect(Box b);
 		returnResult intersectTB(TreeBox * tb); 
 };
-

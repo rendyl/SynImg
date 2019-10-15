@@ -44,9 +44,10 @@ class Scene
 		void createImage();
 		// void createImage2();
 		RGBQUAD chercheCouleur(Rayon r1, int compteur);
-		Vec3 appliqueCouleurLumiere(int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
+		Vec3 appliqueCouleurLumiereSphere(int indMin, Vec3 posTouche, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
+		Vec3 appliqueCouleurLumiereTriangle(int indMin, Vec3 vecLightObj, Vec3 vecLightObjDir, int k);
 		void rayIntersectSphere(int lastIndice, Rayon r1, float* result, int* index);
-		void rayIntersectBox(Rayon r1, float* result, int* index);
+		// void rayIntersectBox(Rayon r1, float* result, int* index);
 		// void rayIntersectSphere(Rayon r1, std::vector<float>* results, std::vector<int>* indexs);
 		// void getMinFromTab(int* indMin, float* resMin, std::vector<float> results, std::vector<int> indexs);
 		bool obstacleInTheWay(Rayon r2, Vec3 vecLightObj);

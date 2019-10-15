@@ -1,20 +1,47 @@
 #include "Triangle.h"
+#include <iostream>
 
-Triangle::Triangle(Vec3 v1, Vec3 v2, Vec3 v3, Vec3 n)
+Triangle::Triangle()
 {
-	Vec3 vertice1 = v1;
-	Vec3 vertice2 = v1;
-	Vec3 vertice3 = v1;
-	Vec3 normal = n;
+
 }
 
-void Triangle::recalculateNorm()
+Triangle::Triangle(Vec3 v1, Vec3 v2, Vec3 v3, Vec3 couleurx, float albedox)
 {
-	// Vector3 pt1 = vertices[triangles[t++]];
-	// Vector3 pt2 = vertices[triangles[t++]];
-	// Vector3 pt3 = vertices[triangles[t++]];
-	// Vector3 vec1 = pt1 - pt2;
-	// Vector3 vec2 = pt2 - pt3;
+	vertice1 = v1;
+	// vertice1.display();
+	vertice2 = v2;
+	// vertice2.display();
+	vertice3 = v3;
+	// vertice3.display();
+	normal = calculateNorm(v1, v2, v3)*(-1);
+	// normal.display();
+	couleur = couleurx;
+	albedo = albedox;
+}
 
-	// normTri[j] = Vector3.Cross(vec1, vec2).normalized;
+Vec3 Triangle::calculateNorm(Vec3 v1, Vec3 v2, Vec3 v3)
+{
+	Vec3 edge1 = v2 - v1;
+	// edge1 = edge1 / edge1.norm();
+	
+	Vec3 edge2 = v3 - v1;
+	// edge2 = edge2 / edge2.norm();
+
+	Vec3 norm = edge1.cross(edge2) / edge1.cross(edge2).norm();
+	//norm.display();
+
+	return norm;
+}
+
+void Triangle::display()
+{
+	std::cout << "Vertice 1 ";
+	vertice1.display();
+	std::cout << "Vertice 2 ";
+	vertice2.display();
+	std::cout << "Vertice 3 ";
+	vertice3.display();
+	std::cout << "Normal ";
+	normal.display();
 }

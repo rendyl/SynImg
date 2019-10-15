@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TreeBox.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Mesh.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Vec3.h">
@@ -83,9 +86,6 @@
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Triangle.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Read.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Box.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -93,6 +93,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\TreeBox.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Synthese d%27Img\SynImg\SynImg\Mesh.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

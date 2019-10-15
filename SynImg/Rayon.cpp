@@ -50,42 +50,40 @@ float Rayon::intersect(Sphere s)
 	}
 }
 
-float Rayon::intersect(Triangle t)
+float Rayon::intersect(Triangle tri)
 {
-	/*
-	bool intersect_triangle(Ray ray, Object object, Intersection & intersection)
+	Vec3 edge1, edge2, h, s, q;
+	float a, f, u, v;
+	const float epsilon = 0.0000001f;
+	edge1 = tri.vertice2 - tri.vertice1;
+	edge2 = tri.vertice3 - tri.vertice1;
+
+	h = direction.cross(edge2);
+	a = edge1 * h;
+	if (a > -epsilon && a < epsilon)
+		return false;
+	f = 1.f / a;
+	s = position - tri.vertice1;
+	u = f * (s * h);
+	if (u < 0.f || u > 1.f)
+		return false;
+	q = s.cross(edge1);
+	v = f * (direction * q);
+	if (v < 0.f || u + v > 1.f)
+		return false;
+	float t = f * (edge2 * q);
+	if (t > epsilon)
 	{
-		Vec3F edge1, edge2, h, s, q;
-		float a, f, u, v;
-		const float epsilon = 0.0000001f;
-		edge1 = object.geom.triangle.v1 - object.geom.triangle.v0;
-		edge2 = object.geom.triangle.v2 - object.geom.triangle.v0;
-		h = cross(ray.direction, edge2);
-		a = dot(edge1, h);
-		if (a > -epsilon && a < epsilon)
-			return false;
-		f = 1.f / a;
-		s = ray.origin - object.geom.triangle.v0;
-		u = f * (dot(s, h));
-		if (u < 0.f || u > 1.f)
-			return false;
-		q = cross(s, edge1);
-		v = f * (dot(ray.direction, q));
-		if (v < 0.f || u + v > 1.f)
-			return false;
-		float t = f * dot(edge2, q);
-		if (t > epsilon)
-		{
-			intersection.distance = t;
-			intersection.position = ray.origin + ray.direction * t;
-			intersection.normale = normalize(cross(edge1, edge2));
-			intersection.object = object;
-			return true;
-		}
-		else
-			return false;
+		//intersection.distance = t;
+		//intersection.position = ray.origin + ray.direction * t;
+		//intersection.normale = normalize(cross(edge1, edge2));
+		//intersection.object = object;
+		return t;
 	}
-	*/
+	else
+	{
+		return -1;
+	}
 }
 
 float Rayon::intersect(Box b)
@@ -130,7 +128,8 @@ returnResult Rayon::intersectTB(TreeBox * tb)
 {
 	if (tb->isLeaf)
 	{
-		return returnResult(intersect(tb->s), tb->indixSphere);
+		if (tb->typeContained == "sphere") return returnResult("sphere", intersect(tb->s), tb->indixSphere);
+		else if (tb->typeContained == "triangle") return returnResult("triangle", intersect(tb->t), tb->indixTriangle);
 	}
 	else
 	{
@@ -146,7 +145,7 @@ returnResult Rayon::intersectTB(TreeBox * tb)
 			if (r1.intersect == -1 && r2.intersect == -1)
 			{	
 				//std::cout << "returned NONE" << std::endl;
-				return returnResult(-1, -1);
+				return returnResult("none", -1, -1);
 			}
 			else if (r1.intersect == -1)
 			{
@@ -171,7 +170,7 @@ returnResult Rayon::intersectTB(TreeBox * tb)
 		}
 		else
 		{
-			return returnResult(-1, -1);
+			return returnResult("none", -1, -1);
 		}
 	}
 }

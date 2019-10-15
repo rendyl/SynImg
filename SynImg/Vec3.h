@@ -24,5 +24,6 @@ class Vec3
 		Vec3 operator/(float a);
 		bool operator==(Vec3 v2);
 		void operator=(Vec3 v2);
-};
 
+		void display();
+};
