@@ -5,9 +5,9 @@ Gamagora 2019 - Ray Tracing
 
 ## Actual Features :
 - Display Spheres
-- Cornell Box
-- Normal Lighting
+- Normal Lighting (Point Light / Surface Light)
 - Indirect Lighting
+- Cornell Box
 - Mirror
 - Glass
 - BVH
@@ -19,7 +19,7 @@ Gamagora 2019 - Ray Tracing
 - Test BVH
 
 ## Some Images :
-![XOR Testing](/SynImg/Img/)
-![Text Testing](/SynImg/Img/)
+![BVH / Indirect Light](/SynImg/Img/BVHIndirectpng)
+![Glass Mirror / Indirect Light](/SynImg/Img/BilleTransparente.png)
  
 *Credits to Guillaume Bouchard for the teaching ! https://github.com/guibou*
