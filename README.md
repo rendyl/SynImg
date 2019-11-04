@@ -22,4 +22,4 @@ Gamagora 2019 - Ray Tracing
 ![XOR Testing](/SynImg/Img/)
 ![Text Testing](/SynImg/Img/)
  
-*Credits to David Miller Youtube Tutorial on Neural Networks*
+*Credits to Guillaume Bouchard for the teaching ! https://github.com/guibou*
