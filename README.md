@@ -1,7 +1,7 @@
-# rayTracing
+# rayTRACING
 Gamagora 2019 - Ray Tracing
 
-*Ray Tracing C++ made FromScratch with FreeImage library*
+*Ray Tracing C++ from scratch with FreeImage library*
 
 ## Actual Features :
 - Display Spheres
