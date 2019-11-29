@@ -24,10 +24,27 @@ Gamagora 2019 - Ray Tracing
  
 ## Comparatif avec/sans BVH :
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column 
+### SANS BVH :
+Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
+-------------- | ----------------- | ---------------------
+10 | 1 | 2  
+50 | 1 | 2  
+100 | 1 | 2  
+1000 | 1 | 2
+5000 | 1 | 2 
+10000 | 1 | 2 
+20000 | 1 | 2 
+
+### AVEC BVH :
+Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
+-------------- | ----------------- | ---------------------
+10 |  | 2 
+50 | 1 | 2 
+100 | 1 | 2 
+1000 | 1 | 2 
+5000 | 1 | 2 
+10000 | 1 | 2 
+20000 | 1 | 2 
  
 ## En cours :
 - Affichage de Mesh
