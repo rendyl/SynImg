@@ -36,4 +36,4 @@ Content in the first column | Content in the second column
 - BVH pour les Mesh
 - Sampling pour la camera
 
-*Credits to Guillaume Bouchard for the teaching ! https://github.com/guibou*
+*Merci à Guillaume Bouchard pour l'enseignement ! https://github.com/guibou*
