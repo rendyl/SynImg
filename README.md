@@ -27,8 +27,8 @@ Gamagora 2019 - Ray Tracing
 ### Sans éclairage indirect :
 
 #### SANS BVH :
-Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
--------------- | ----------------- | ---------------------
+Nombre Spheres | Temps d'éxécution | Nombre de Tests d'intersection
+-------------- | ----------------- | ------------------------------
 10 | 6s | 268802711  
 50 | 15s | 824666870  
 100 | 28s | 1658260659  
@@ -38,8 +38,8 @@ Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
 20000 | 2779s | 179748534602 
 
 #### AVEC BVH :
-Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
--------------- | ----------------- | ---------------------
+Nombre Spheres | Temps d'éxécution | Nombre de Tests d'intersection
+-------------- | ----------------- | ------------------------------
 10 | 3s | 21193170 
 50 | 4s | 40504100 
 100 | 5s | 67072736 
@@ -51,8 +51,8 @@ Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
 ### Avec éclairage indirect :
 
 #### AVEC BVH :
-Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
--------------- | ----------------- | ---------------------
+Nombre Spheres | Temps d'éxécution | Nombre de Tests d'intersection
+-------------- | ----------------- | ------------------------------
 10 | 80s | 205660338 
 50 | 84s | 295175164 
 100 | 97s | 538056776 
