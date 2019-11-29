@@ -17,7 +17,7 @@ Gamagora 2019 - Ray Tracing
 ![Render / Indirect Light](/SynImg/Img/Render.png)
 
 ### Test du BVH : 
-![BVH / Test BVH](/SynImg/Img/testBox1.png)
+![BVH / Test BVH](/SynImg/Img/testBoxZ.png)
 ![BVH / Render Image](/SynImg/Img/testBox.png)
 
 
