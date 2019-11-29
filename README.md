@@ -17,9 +17,7 @@ Gamagora 2019 - Ray Tracing
 ![Render / Indirect Light](/SynImg/Img/Render.png)
 
 ### Test du BVH : 
-![BVH / Test BVH](/SynImg/Img/testBoxZ.png)
-![BVH / Render Image](/SynImg/Img/testBox.png)
-
+<img src="/SynImg/Img/testBoxZ.png" data-canonical-src="/SynImg/Img/testBoxZ.png" width="299" height="299" /> <img src="/SynImg/Img/testBox.png" data-canonical-src="/SynImg/Img/testBox.png" width="299" height="299" />
 
 ### 1000 Sphères avec le BVH :
 ![1000 Sph / Indirect Light](/SynImg/Img/1000sphpurple.png)
