@@ -24,7 +24,9 @@ Gamagora 2019 - Ray Tracing
  
 ## Comparatif avec/sans BVH :
 
-### SANS BVH :
+### Sans éclairage indirect :
+
+#### SANS BVH :
 Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
 -------------- | ----------------- | ---------------------
 10 | 6s | 268802711  
@@ -35,17 +37,30 @@ Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
 10000 | 1531s | 99511761411 
 20000 | 2779s | 179748534602 
 
-### AVEC BVH :
+#### AVEC BVH :
 Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
 -------------- | ----------------- | ---------------------
-10 |  | 2 
-50 | 1 | 2 
-100 | 1 | 2 
-1000 | 1 | 2 
-5000 | 1 | 2 
-10000 | 1 | 2 
-20000 | 1 | 2 
- 
+10 | 3s | 21193170 
+50 | 4s | 40504100 
+100 | 5s | 67072736 
+1000 | 19s | 334125758 
+5000 | 132s | 2394643054 
+10000 | 317s | 5477778834 
+20000 | 536s | 9007225618 
+
+### Avec éclairage indirect :
+
+#### AVEC BVH :
+Nombre Spheres | Temps d'éxécution | Nb Tests Intersection
+-------------- | ----------------- | ---------------------
+10 | 80s | 205660338 
+50 | 84s | 295175164 
+100 | 97s | 538056776 
+1000 | 184s | 2143561292 
+5000 | 922s | 15139982976 
+10000 | 2578s | 44399352164 
+20000 | 3647s | 62759919546 
+
 ## En cours :
 - Affichage de Mesh
 - BVH pour les Mesh
