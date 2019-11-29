@@ -48,6 +48,10 @@ Nombre de sphères | Temps d'éxécution | Nombre de tests d'intersection
 10000 | 317s | 5477778834 
 20000 | 536s | 9007225618 
 
+#### Graphe Comparatif : Nombre d'intersections en fonction du Nombre de sphères
+![Nombre d'intersections en fonction du Nombre de sphères](/SynImg/Img/Graphe2.png)
+
+
 ### Avec éclairage indirect :
 
 #### AVEC BVH :
@@ -60,6 +64,10 @@ Nombre de sphères | Temps d'éxécution | Nombre de tests d'intersection
 5000 | 922s | 15139982976 
 10000 | 2578s | 44399352164 
 20000 | 3647s | 62759919546 
+
+#### Graphe : Nombre d'intersections en fonction du Nombre de sphères (éclairage indirect)
+![Nombre d'intersections en fonction du Nombre de sphères (éclairage indirect)](/SynImg/Img/Graphe1.png)
+
 
 ## En cours :
 - Affichage de Mesh
