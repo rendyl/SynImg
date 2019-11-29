@@ -1,25 +1,34 @@
 # rayTRACING
 Gamagora 2019 - Ray Tracing
 
-*Ray Tracing C++ from scratch with FreeImage library*
+*Ray Tracing C++*
 
-## Actual Features :
-- Display Spheres
-- Normal Lighting (Point Light / Surface Light)
-- Indirect Lighting
+## Fonctionnalités implémentées :
+- Affichage de Sphères
+- Eclairage direct (Point Lights / Lampes surfaciques)
+- Eclairage indirect
 - Cornell Box
-- Mirror
-- Glass
+- Miroirs
+- Vitres
 - BVH
 
+## Quelques rendus :
+### Eclairage Indirect (avec Miroir & Vitre) :
+![Render / Indirect Light](/SynImg/Img/Render.png)
+
+### Test du BVH : 
+![BVH / Test BVH](/SynImg/Img/testBox1.png)
+![BVH / Render Image](/SynImg/Img/testBox.png)
+
+
+### 1000 Sphères avec le BVH :
+![1000 Sph / Indirect Light](/SynImg/Img/1000sphpurple.png)
+ 
+## Comparatif avec/sans BVH :
+ 
 ## In Progress :
 - Mesh Display
 - BVH for Meshes
 - Sampling Pixels
-- Test BVH
 
-## Some Images :
-![BVH / Indirect Light](/SynImg/Img/BVHIndirect.png)
-![Glass Mirror / Indirect Light](/SynImg/Img/BilleTransparente.png)
- 
 *Credits to Guillaume Bouchard for the teaching ! https://github.com/guibou*
