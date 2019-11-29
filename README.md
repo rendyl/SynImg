@@ -25,10 +25,15 @@ Gamagora 2019 - Ray Tracing
 ![1000 Sph / Indirect Light](/SynImg/Img/1000sphpurple.png)
  
 ## Comparatif avec/sans BVH :
+
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column 
  
-## In Progress :
-- Mesh Display
-- BVH for Meshes
-- Sampling Pixels
+## En cours :
+- Affichage de Mesh
+- BVH pour les Mesh
+- Sampling pour la camera
 
 *Credits to Guillaume Bouchard for the teaching ! https://github.com/guibou*
